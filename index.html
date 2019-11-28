@@ -13,8 +13,10 @@
       }
 
       .card {
+        resize: both;
+        overflow: hidden;
+
         text-align: center;
-        width: 800px;
         background-color: #e9eded;
         border-radius: 10px;
         color: #263238;
@@ -41,8 +43,13 @@
       .card .card-content {
         background-size: cover;
         background-position: center;
-        height: 350px;
+        height: 100%;
+        width: 100%;
         border-radius: 0 0 10px 10px;
+      }
+      .resize-advice{
+        margin-top: 50px;
+        text-align: right;
       }
     </style>
   </head>
@@ -62,6 +69,7 @@
         </label>
       </div>
     </div>
+  
   <section class="section">
     
       
@@ -79,8 +87,14 @@
           
         </div>
       </div>
+      <div class="resize-advice">
+          <img src="resize.svg">
+      </div>
+      
     </div>
+    
   </section>
+  
   <script>
     // Check for the File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
