@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mac Image Frame</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+      .nav {
+        padding: 2rem;
+        padding-bottom: 0;
+      }
+
+      .card {
+        text-align: center;
+        width: 800px;
+        background-color: #e9eded;
+        border-radius: 10px;
+        color: #263238;
+        border: none;
+        -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.342);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.342);
+      }
+
+      .card .card-header {
+        border: none;
+        -webkit-box-shadow: none;
+                box-shadow: none;
+      }
+
+      .card .card-header .card-header-title span {
+        margin-right: 50px;
+      }
+
+      .card .card-header .card-header-title .page-title {
+        width: 75%;
+        text-align: center;
+      }
+
+      .card .card-content {
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        border-radius: 0 0 10px 10px;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="nav">
+      <div class="file" id="file-js">
+        <label class="file-label">
+          <input class="file-input" type="file" name="resume">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+  <section class="section">
+    
+      
+    <div class="container" style="text-align: center;">
+      <div class="card">
+        <header class="card-header">
+
+          <div class="card-header-title">
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14"><g fill="none" fill-rule="evenodd" transform="translate(1 1)"><circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle><circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle><circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle></g></svg></span>
+            <div class="page-title">Title</div>
+          </div>
+          
+        </header>
+        <div class="card-content" id="imagem">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Check for the File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      document.querySelector('#file-js input[type=file]').addEventListener('change', handleFileSelect, false);
+    } else {
+      // alert('The File APIs are not fully supported in this browser.');
+    }
+
+    function handleFileSelect(evt) {
+      var f = evt.target.files[0]; // FileList object
+      var reader = new FileReader();
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          var binaryData = e.target.result;
+          //Converting Binary Data to base 64
+          var base64String = window.btoa(binaryData);
+          //showing file converted to base64
+          document.getElementById('imagem').setAttribute("style", "background:url('data:image/png;base64,"+base64String+"'); background-position: center; background-size: cover;");
+          // document.getElementById('base64').value = base64String;
+          // alert('File converted to base64 successfuly!\nCheck in Textarea');
+        };
+      })(f);
+      // Read in the image file as a data URL.
+      reader.readAsBinaryString(f);
+    }
+  </script>
+  </body>
+</html>
