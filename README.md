@@ -1,4 +1,4 @@
-#mac-image-frame
+# mac-image-frame
 
 Frame images for docs
 
